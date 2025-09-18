@@ -75,9 +75,15 @@ LRANGE mylist 0 1     # Get first 2 elements
 
 ```javascript
 // ioredis
+
 const allElements = await redis.lrange('mylist', 0, -1);
 const firstTwo = await redis.lrange('mylist', 0, 1);
 ```
+### Understanding LRANGE Parameters
+javascriptredis.lrange(key, start, stop)
+
+**start: Starting index (inclusive)**
+**stop: Ending index (inclusive)**
 
 ### Advanced List Operations
 
