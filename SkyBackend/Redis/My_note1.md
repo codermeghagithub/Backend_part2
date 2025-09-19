@@ -177,3 +177,29 @@ Hashing is a method of converting data (keys) into array indices using a mathema
 
 ### In Redis, TTL (Time to Live) is a feature that allows you to set an expiration time for a key, after which the key is automatically deleted from the database.
  This is achieved using commands like EXPIRE to set a specific number of seconds until the key expires, or SETEX to set a key with a value and an expiration time in seconds simultaneously.
+
+ ## what is Streams ?
+
+## How do you store data in different Streams ?
+```js
+
+// First stream: user-events
+await redis.xadd("user-events", "*", "userId", "1", "action", "click");
+
+// Second stream: purchase-events
+await redis.xadd("purchase-events", "*", "userId", "123", "action", "purchase", "product", "laptop");
+```
+
+## IMPOTANT 
+ if you store different format data in same stream it will gives error when you use other operation except **xread** operation .
+
+``` js
+const entries=await redis.xread("STREAMS","user-events","0") 
+ ```
+ STREAMS → keyword that separates options from stream list.required keyword (tells Redis “now I’ll list streams and IDs”).
+ ✅ Without STREAMS, Redis won’t know where the options stop and where the stream list begins, so it gives a syntax error.
+
+user-events → the actual Redis Stream (your data structure).
+
+0 → starting ID (means read everything from the beginning).
+**✅ So now entries contains all messages in the user-events stream.**
