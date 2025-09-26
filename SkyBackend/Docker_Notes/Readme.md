@@ -208,6 +208,7 @@ COPY package-lock.json /home/app/package-lock.json
 # Install the dependencies
 WORKDIR /home/app
 RUN npm install
+CMD ["npm","start"]
 ```
 
 **Problems with this approach:**
