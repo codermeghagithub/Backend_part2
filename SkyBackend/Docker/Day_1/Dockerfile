@@ -18,7 +18,7 @@
 
 
 #  ** Optimized way to crate IMAGE 
-# **BASE IMAGE 
+#  ** BASE IMAGE 
 FROM node:20.17.0-alpine3.19
 
 WORKDIR /home/app
